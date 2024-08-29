@@ -6,7 +6,7 @@
 /*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 16:15:35 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/08/29 17:38:07 by yzeybek          ###   ########.fr       */
+/*   Updated: 2024/08/29 21:10:37 by yzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,6 @@
 
 void	*check_malloc(void *size);
 void	*check_open(int fd);
+void	check_bytes(int bytes_read);
 
 #endif
