@@ -1,0 +1,37 @@
+#!/usr/bin/perl
+
+use warnings;
+use strict;
+
+die "expected arguments: x y density empty obstacle full" unless (scalar(@ARGV) == 6);
+
+my ($x, $y, $density, $empty, $obs, $full) = @ARGV;
+
+# Dosya ismini belirleme fonksiyonu
+sub get_available_filename {
+    my $base_name = "map";
+    my $i = 1;
+    while (-e "${base_name}${i}") {
+        $i++;
+    }
+    return "${base_name}${i}";
+}
+
+my $name = get_available_filename();
+
+open(my $fh, '>', $name) or die "Error opening file";
+
+print $fh "$y$empty$obs$full\n";
+for (my $i = 0; $i < $y; $i++) {
+    for (my $j = 0; $j < $x; $j++) {
+        if (int(rand($y) * 2) < $density) {
+            print $fh "$obs";
+        }
+        else {
+            print $fh "$empty";
+        }
+    }
+    print $fh "\n";
+}
+close($fh);
+

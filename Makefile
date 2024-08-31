@@ -1,8 +1,4 @@
-SRCS = ./srcs/main.c \
-		./srcs/errors.c \
-		./srcs/file_ops.c \
-		./srcs/split_content.c \
-		./srcs/validate.c
+SRCS = $(wildcard srcs/*.c)
 
 OBJS = ${SRCS:.c=.o}
 
@@ -16,6 +12,8 @@ CFLAGS = -Wall -Wextra -Werror
 
 RM = rm -f
 
+MAPS = map*
+
 %.o : %.c
 	${CC} ${CFLAGS} -c $< -o $@ -I ${INCS}
 
@@ -27,7 +25,10 @@ all: ${NAME}
 clean:
 	${RM} ${OBJS}
 
-fclean: clean
+mclean:
+	${RM} ${MAPS}
+
+fclean: clean mclean
 	${RM} ${NAME}
 
 re: fclean all

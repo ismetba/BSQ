@@ -13,7 +13,7 @@
 #ifndef BSQ_H
 # define BSQ_H
 
-# define BUFFER_SIZE 1024
+# define BUFFER_SIZE 42
 
 typedef struct s_map
 {
@@ -21,7 +21,7 @@ typedef struct s_map
 	char	obstacle;
 	char	full;
 	int		line_count;
-	char	**map;
+	char	**map_content;
 
 }	t_map;
 

@@ -10,27 +10,43 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
+#include <stdlib.h>
 #include "../includes/file_ops.h"
 #include "../includes/split_content.h"
-#include "../includes/bsq.h"
-#include <unistd.h>
 
-void	process_map(char *file_name)
+void	free_map(struct s_map *map)
 {
-	char			*content;
-	struct s_map	map;
+	int	i;
+
+	i = 0;
+	while (i <= (*map).line_count)
+	{
+		free((*map).map_content[i]);
+		i++;
+	}
+	free((*map).map_content);
+}
+
+void process_map(char *file_name)
+{
+	char *content;
+	struct s_map map;
 
 	content = read_file(file_name);
 	if (!split_content(content, &map))
 	{
 		write(2, "map error\n", 11);
-		return ;
+		return;
 	}
+	free(content);
+	//PROCESS WILL CONTINUE FROM CONVERTING MAP_CONTENT TO MATRIX
+	free_map(&map);
 }
 
-int	main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
-	int		i;
+	int i;
 
 	if (argc > 1)
 	{
