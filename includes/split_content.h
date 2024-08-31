@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.h                                           :+:      :+:    :+:   */
+/*   split_content.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/29 16:15:35 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/08/31 13:28:09 by yzeybek          ###   ########.fr       */
+/*   Created: 2024/08/31 13:18:16 by yzeybek           #+#    #+#             */
+/*   Updated: 2024/08/31 15:17:23 by yzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERRORS_H
-# define ERRORS_H
+#ifndef SPLIT_CONTENT_H
+# define SPLIT_CONTENT_H
 
-void	check_malloc(void *size);
-void	check_file(int res);
-void	check_bytes(int bytes_read, char **content);
+# include "bsq.h"
+
+int	split_content(char *content, struct s_map *map);
 
 #endif

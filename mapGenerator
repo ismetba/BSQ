@@ -3,11 +3,11 @@
 use warnings;
 use strict;
 
-die "program x y density" unless (scalar(@ARGV) == 7);
+die "program x y density empty obstacle full file" unless (scalar(@ARGV) == 7);
 
 my ($x, $y, $density, $empty, $obs, $full, $name) = @ARGV;
 
-open(my $fh, '>', $name) or die "Cannot open map file: $!";
+open(my $fh, '>', $name) or die "Error opening file";
 
 print $fh "$y$empty$obs$full\n";
 for (my $i = 0; $i < $y; $i++) {

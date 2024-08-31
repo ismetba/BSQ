@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.h                                           :+:      :+:    :+:   */
+/*   validate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/29 16:15:35 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/08/31 13:28:09 by yzeybek          ###   ########.fr       */
+/*   Created: 2024/08/31 15:06:29 by yzeybek           #+#    #+#             */
+/*   Updated: 2024/08/31 15:08:35 by yzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERRORS_H
-# define ERRORS_H
-
-void	check_malloc(void *size);
-void	check_file(int res);
-void	check_bytes(int bytes_read, char **content);
-
-#endif
+int	check_max_length(int index)
+{
+	if (index >= 14)
+		return (0);
+	return (1);
+}

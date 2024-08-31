@@ -6,7 +6,7 @@
 /*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 10:06:41 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/08/29 21:18:14 by yzeybek          ###   ########.fr       */
+/*   Updated: 2024/08/31 13:29:15 by yzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,94 +14,60 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include "../includes/errors.h"
+#include "../includes/bsq.h"
 
-char	**allocate_map(char *file_content, int map_size, int start, int line)
+char	*fc_alloc(char *content, int total_size, char *buffer, int bytes_read)
 {
-	char	**map;
 	int		i;
-	int		line_length;
+	char	*new_content;
 
-	map = malloc((map_size + 1) * sizeof(char *));
-	check_malloc(map);
+	new_content = malloc(total_size + bytes_read + 1);
+	check_malloc(new_content);
 	i = -1;
-	while (file_content[++i])
-	{
-		if (file_content[i] == '\n')
-		{
-			line_length = i - start;
-			map[line] = malloc(line_length + 1);
-			check_malloc(map[line]);
-			start = -1;
-			while (++start < line_length)
-				map[line][start] = file_content[i - line_length + start];
-			map[line++][line_length] = '\0';
-			start = i + 1;
-		}
-	}
-	map[map_size] = NULL;
-	return (map);
+	while (++i < total_size)
+		new_content[i] = content[i];
+	i = -1;
+	while (++i < bytes_read)
+		new_content[total_size + i] = buffer[i];
+	new_content[total_size + bytes_read] = '\0';
+	free(content);
+	return (new_content);
 }
 
-int	count_line(char *file_content)
+char	*read_fc(int fd)
 {
-	int	i;
-	int	map_size;
+	char		buffer[BUFFER_SIZE];
+	long		bytes_read;
+	char		*content;
+	int			total_size;
 
-	i = 0;
-	map_size = 0;
-	while (file_content[i])
-	{
-		if (file_content[i] == '\n')
-			map_size++;
-		i++;
-	}
-	return (map_size);
-}
-
-char	*read_fc(int fd, int *total_size, int i)
-{
-	char	buffer[BUFFER_SIZE + 1];
-	char	*file_content;
-	int		bytes_read;
-	char	*temp;
-
-	file_content = NULL;
+	content = NULL;
+	total_size = 0;
 	bytes_read = read(fd, buffer, BUFFER_SIZE);
-	check_bytes(bytes_read);
 	while (bytes_read > 0)
 	{
-		temp = malloc(*total_size + bytes_read + 1);
-		check_malloc(temp);
-		i = -1;
-		while (++i < *total_size)
-			temp[i] = file_content[i];
-		i = -1;
-		while (++i < bytes_read)
-			temp[*total_size + i] = buffer[i];
-		temp[*total_size + bytes_read] = '\0';
-		free(file_content);
-		file_content = temp;
-		*total_size += bytes_read;
+		content = fc_alloc(content, total_size, buffer, bytes_read);
+		total_size += bytes_read;
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 	}
-	return (file_content);
+	check_bytes(bytes_read, &content);
+	return (content);
 }
 
-char	**read_file(char *file_name)
+char	*read_file(const char *filename)
 {
 	int		fd;
-	int		total_size;
-	char	*file_content;
-	int		map_size;
-	char	**map;
+	char	*content;
 
-	total_size = 0;
-	fd = open(file_name, O_RDONLY);
-	check_open(fd);
-	file_content = read_fc(fd, &total_size, 0);
-	map_size = count_line(file_content);
-	map = allocate_map(file_content, map_size, 0, 0);
-	free(file_content);
-	close(fd);
-	return (map);
+	if (filename)
+	{
+		fd = open(filename, O_RDONLY);
+		check_file(fd);
+	}
+	else
+		fd = STDIN_FILENO;
+	content = read_fc(fd);
+	if (filename)
+		check_file(close(fd));
+	return (content);
 }

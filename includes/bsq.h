@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.h                                           :+:      :+:    :+:   */
+/*   bsq.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/29 16:15:35 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/08/31 13:28:09 by yzeybek          ###   ########.fr       */
+/*   Created: 2024/08/31 13:27:55 by yzeybek           #+#    #+#             */
+/*   Updated: 2024/08/31 13:28:31 by yzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERRORS_H
-# define ERRORS_H
+#ifndef BSQ_H
+# define BSQ_H
 
-void	check_malloc(void *size);
-void	check_file(int res);
-void	check_bytes(int bytes_read, char **content);
+# define BUFFER_SIZE 1024
+
+typedef struct s_map
+{
+	char	empty;
+	char	obstacle;
+	char	full;
+	int		line_count;
+	char	**map;
+
+}	t_map;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:05:14 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/08/29 21:10:10 by yzeybek          ###   ########.fr       */
+/*   Updated: 2024/08/31 11:33:46 by yzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,21 @@ void	check_malloc(void *size)
 	}
 }
 
-void	check_open(int fd)
+void	check_file(int res)
 {
-	if (fd == -1)
+	if (res == -1)
 	{
-		write(2, "Error opening file !\n", 22);
+		write(2, "Error opening/closing file !\n", 30);
 		exit(EXIT_FAILURE);
 	}
 }
 
-void	check_bytes(int bytes_read)
+void	check_bytes(int bytes_read, char **content)
 {
 	if (bytes_read == -1)
 	{
 		write(2, "Error reading bytes !\n", 23);
+		free(*content);
 		exit(EXIT_FAILURE);
 	}
 }

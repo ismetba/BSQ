@@ -1,6 +1,8 @@
 SRCS = ./srcs/main.c \
-		./srcs/error.c \
-		./srcs/file_ops.c
+		./srcs/errors.c \
+		./srcs/file_ops.c \
+		./srcs/split_content.c \
+		./srcs/validate.c
 
 OBJS = ${SRCS:.c=.o}
 
@@ -8,7 +10,7 @@ INCS = ./includes
 
 NAME = bsq
 
-CC = gcc
+CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
