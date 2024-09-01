@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commons.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: ibayandu <ibayandu@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 13:26:15 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/09/01 13:55:29 by yzeybek          ###   ########.fr       */
+/*   Updated: 2024/09/01 16:49:09 by ibayandu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 void	ft_putchar(char c);
 void	ft_putstr(char *str);
 int		ft_strlen(char *str);
-int		ft_min(int *arr, int size);
+int		ft_min(int a, int b, int c);
+int		ft_strlen_n(char *str);
 
 #endif

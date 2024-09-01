@@ -3,25 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_min.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: ibayandu <ibayandu@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 13:31:04 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/09/01 13:56:29 by yzeybek          ###   ########.fr       */
+/*   Updated: 2024/09/01 17:09:30 by ibayandu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_min(int *arr, int size)
+int	ft_min(int a, int b, int c)
 {
-	int	i;
-	int	min;
-
-	min = 0;
-	i = 0;
-	while (i < size)
-	{
-		if (arr[i] < min)
-			min = arr[i];
-		i++;
-	}
-	return (min);
+	if (a <= b && a <= c)
+		return (a);
+	else if (b <= a && b <= c)
+		return (b);
+	else if (c <= a && c <= b)
+		return (c);
+	else
+		return (-1);
 }
