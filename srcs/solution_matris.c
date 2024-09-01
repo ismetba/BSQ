@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bsq.h                                              :+:      :+:    :+:   */
+/*   solution_matris.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibayandu <ibayandu@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/31 13:27:55 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/09/01 11:39:36 by ibayandu         ###   ########.fr       */
+/*   Created: 2024/08/31 21:44:05 by ibayandu          #+#    #+#             */
+/*   Updated: 2024/09/01 11:58:05 by ibayandu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BSQ_H
-# define BSQ_H
-
-# define BUFFER_SIZE 42
-
-typedef struct s_map
+int	**ft_solution_matris(int **original_matris, unsigned long row,
+		unsigned long column)
 {
-	char	empty;
-	char	obstacle;
-	char	full;
-	int		line_count;
-	char	**map_content;
-}	t_map;
+	int	**solution_matris;
+	int	i;
 
-#endif
+	i = 0;
+	solution_matris = (int **)malloc(row * sizeof(int *));
+	while (i < row)
+	{
+		solution_matris[i++] = (int *)malloc(column * sizeof(int));
+	}
+	i = 0;
+	return (0);
+}
