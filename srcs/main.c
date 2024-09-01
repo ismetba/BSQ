@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: ibayandu <ibayandu@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 10:23:34 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/09/01 09:33:27 by yzeybek          ###   ########.fr       */
+/*   Updated: 2024/09/01 11:57:28 by ibayandu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
 #include "../includes/file_ops.h"
 #include "../includes/split_content.h"
+#include <stdlib.h>
+#include <unistd.h>
 
 void	free_map(struct s_map *map)
 {
@@ -40,7 +40,7 @@ void	process_map(char *file_name)
 		return ;
 	}
 	free(content);
-	//PROCESS WILL CONTINUE FROM CONVERTING MAP_CONTENT TO MATRIX
+	// TODO: PROCESS WILL CONTINUE FROM CONVERTING MAP_CONTENT TO MATRIX
 	free_map(&map);
 }
 

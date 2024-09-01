@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_content.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: ibayandu <ibayandu@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 12:50:12 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/09/01 09:39:13 by yzeybek          ###   ########.fr       */
+/*   Updated: 2024/09/01 10:36:09 by ibayandu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,10 @@ int	split_lines(char *content, struct s_map *map)
 	int		line_length;
 	char	**map_data;
 
-	i = -1;
-	map_data = (char **)malloc(sizeof(char *) * ((*map).line_count + 1));
-	line_length = 0;
-	while (++i <= (*map).line_count)
+	i = 0;
+	map_data = (char **)malloc(sizeof(char *) * (*map).line_count);
+	line_length = ft_strlen(content);
+	while (i <= (*map).line_count)
 	{
 		j = 0;
 		while (content[j] != '\n' && content[j])
