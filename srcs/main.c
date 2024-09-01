@@ -6,7 +6,7 @@
 /*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 10:23:34 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/08/31 15:26:06 by yzeybek          ###   ########.fr       */
+/*   Updated: 2024/09/01 09:33:27 by yzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,25 @@ void	free_map(struct s_map *map)
 	free((*map).map_content);
 }
 
-void process_map(char *file_name)
+void	process_map(char *file_name)
 {
-	char *content;
-	struct s_map map;
+	char			*content;
+	struct s_map	map;
 
 	content = read_file(file_name);
 	if (!split_content(content, &map))
 	{
 		write(2, "map error\n", 11);
-		return;
+		return ;
 	}
 	free(content);
 	//PROCESS WILL CONTINUE FROM CONVERTING MAP_CONTENT TO MATRIX
 	free_map(&map);
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-	int i;
+	int	i;
 
 	if (argc > 1)
 	{

@@ -6,7 +6,7 @@
 /*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 12:50:12 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/08/31 17:05:56 by yzeybek          ###   ########.fr       */
+/*   Updated: 2024/09/01 09:39:13 by yzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include "../includes/bsq.h"
 #include "../includes/errors.h"
 
-int ft_atoi_light(char *first_line, struct s_map *map, int length)
+int	ft_atoi_light(char *first_line, struct s_map *map, int length)
 {
-	int i;
-	int res;
+	int	i;
+	int	res;
 
 	i = 0;
 	res = 0;
@@ -31,11 +31,11 @@ int ft_atoi_light(char *first_line, struct s_map *map, int length)
 	return (i);
 }
 
-int split_first(char *content, struct s_map *map, int i)
+int	split_first(char *content, struct s_map *map, int i)
 {
-	char *first_line;
-	int j;
-	int nbr_length;
+	char	*first_line;
+	int		j;
+	int		nbr_length;
 
 	first_line = (char *)malloc(sizeof(char) * i);
 	check_malloc(first_line);
@@ -60,10 +60,10 @@ int split_first(char *content, struct s_map *map, int i)
 	return (1);
 }
 
-char *get_line(char *content, struct s_map *map, int index)
+char	*get_line(char *content, struct s_map *map, int index)
 {
-	int i;
-	char *res;
+	int		i;
+	char	*res;
 
 	i = 0;
 	while (content[i] != '\n')
@@ -83,12 +83,12 @@ char *get_line(char *content, struct s_map *map, int index)
 	return (res);
 }
 
-int split_lines(char *content, struct s_map *map)
+int	split_lines(char *content, struct s_map *map)
 {
-	int i;
-	int j;
-	int line_length;
-	char **map_data;
+	int		i;
+	int		j;
+	int		line_length;
+	char	**map_data;
 
 	i = -1;
 	map_data = (char **)malloc(sizeof(char *) * ((*map).line_count + 1));
@@ -104,7 +104,7 @@ int split_lines(char *content, struct s_map *map)
 		if ((i > 1 && j != line_length))
 			return (0);
 		map_data[i] = get_line(content, map, i);
-		if (map_data[i] == NULL)
+		if (!map_data[i] || (i == (*map).line_count && content[j + 1] != '\0'))
 			return (0);
 		content += j + 1;
 	}
@@ -112,9 +112,9 @@ int split_lines(char *content, struct s_map *map)
 	return (1);
 }
 
-int split_content(char *content, struct s_map *map)
+int	split_content(char *content, struct s_map *map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (content[i] != '\n')
