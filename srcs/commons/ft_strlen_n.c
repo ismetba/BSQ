@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bsq.h                                              :+:      :+:    :+:   */
+/*   ft_strlen_n.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibayandu <ibayandu@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/31 13:27:55 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/09/01 15:16:07 by ibayandu         ###   ########.fr       */
+/*   Created: 2024/09/01 15:19:59 by ibayandu          #+#    #+#             */
+/*   Updated: 2024/09/01 15:20:26 by ibayandu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BSQ_H
-# define BSQ_H
-
-# define BUFFER_SIZE 42
-
-typedef struct s_map
+int	ft_strlen_n(char *str)
 {
-	char	empty;
-	char	obstacle;
-	char	full;
-	int		line_count;
-	int		column_count;
-	char	**map_content;
-}	t_map;
+	int	i;
 
-#endif
+	i = 0;
+	while (str[i] != '\n')
+		i++;
+	return (i);
+}
