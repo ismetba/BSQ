@@ -6,12 +6,12 @@
 /*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 10:23:34 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/09/01 12:38:18 by yzeybek          ###   ########.fr       */
+/*   Updated: 2024/09/01 14:35:15 by yzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/file_ops.h"
-#include "../includes/split_content.h"
+#include "../includes/matrices.h"
 #include <libc.h>
 #include <unistd.h>
 
@@ -31,6 +31,7 @@ void	free_map(struct s_map *map)
 void	process_map(char *file_name)
 {
 	char			*content;
+	int				**matrix;
 	struct s_map	map;
 
 	content = read_file(file_name);
@@ -40,7 +41,8 @@ void	process_map(char *file_name)
 		return ;
 	}
 	free(content);
-	// TODO: PROCESS WILL CONTINUE FROM CONVERTING MAP_CONTENT TO MATRIX
+	matrix = ft_splitted_to_matrix(map);
+	//
 	free_map(&map);
 }
 

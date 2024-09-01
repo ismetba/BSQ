@@ -32,10 +32,7 @@ all: ${EXE}
 clean:
 	${RM} ${OBJS}
 
-mclean:
-	${RM} ${MAPS}
-
-fclean: clean mclean
+fclean: clean
 	${RM} ${BIN_DIR}
 
 bin:
@@ -43,4 +40,4 @@ bin:
 
 re: fclean all
 
-.PHONY: all clean fclean re mclean
+.PHONY: all clean fclean re bin

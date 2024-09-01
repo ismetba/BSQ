@@ -2,20 +2,22 @@
 
 use warnings;
 use strict;
+use File::Path qw(make_path);
 
 die "expected arguments: x y density empty obstacle full" unless (scalar(@ARGV) == 6);
 
 my ($x, $y, $density, $empty, $obs, $full) = @ARGV;
 
-# Dosya ismini belirleme fonksiyonu
 sub get_available_filename {
-    my $base_name = "map";
+    my $base_name = "./data/map";
     my $i = 1;
     while (-e "${base_name}${i}") {
         $i++;
     }
     return "${base_name}${i}";
 }
+
+make_path('./data') unless -d './data';
 
 my $name = get_available_filename();
 

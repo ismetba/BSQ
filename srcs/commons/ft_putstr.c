@@ -6,7 +6,7 @@
 /*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 13:29:23 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/09/01 13:30:44 by yzeybek          ###   ########.fr       */
+/*   Updated: 2024/09/01 14:24:57 by yzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,7 @@
 
 void	ft_putstr(char *str)
 {
-	int	i;
+	while (*str)
+		write(1, str++, 1);
 
-	i = 0;
-	while (str[i])
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
 }
