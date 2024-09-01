@@ -6,9 +6,10 @@
 /*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 12:50:12 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/09/01 11:13:17 by yzeybek          ###   ########.fr       */
+/*   Updated: 2024/09/01 12:22:27 by yzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include <stdlib.h>
 #include "../includes/bsq.h"
