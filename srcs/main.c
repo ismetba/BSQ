@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibayandu <ibayandu@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 10:23:34 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/09/01 11:57:28 by ibayandu         ###   ########.fr       */
+/*   Updated: 2024/09/01 12:38:18 by yzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/file_ops.h"
 #include "../includes/split_content.h"
-#include <stdlib.h>
+#include <libc.h>
 #include <unistd.h>
 
 void	free_map(struct s_map *map)

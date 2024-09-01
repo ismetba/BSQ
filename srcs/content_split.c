@@ -6,14 +6,13 @@
 /*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 12:50:12 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/09/01 12:22:27 by yzeybek          ###   ########.fr       */
+/*   Updated: 2024/09/01 12:35:58 by yzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include <stdlib.h>
 #include "../includes/bsq.h"
 #include "../includes/errors.h"
+#include <libc.h>
 
 int	ft_atoi_light(char *first_line, struct s_map *map, int length)
 {
@@ -32,7 +31,7 @@ int	ft_atoi_light(char *first_line, struct s_map *map, int length)
 	return (i);
 }
 
-int	split_first(char *content, struct s_map *map, int i)
+int	split_first(char *content, t_map *map, int i)
 {
 	char	*first_line;
 	int		j;
@@ -61,7 +60,7 @@ int	split_first(char *content, struct s_map *map, int i)
 	return (1);
 }
 
-char	*get_line(char *content, struct s_map *map, int index)
+char	*get_line(char *content, t_map *map, int index)
 {
 	int		i;
 	char	*res;
@@ -84,7 +83,7 @@ char	*get_line(char *content, struct s_map *map, int index)
 	return (res);
 }
 
-int	split_lines(char *content, struct s_map *map)
+int	split_lines(char *content, t_map *map)
 {
 	int		i;
 	int		j;
@@ -113,7 +112,7 @@ int	split_lines(char *content, struct s_map *map)
 	return (1);
 }
 
-int	split_content(char *content, struct s_map *map)
+int	split_content(char *content, t_map *map)
 {
 	int	i;
 

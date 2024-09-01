@@ -6,15 +6,15 @@
 /*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 10:06:41 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/09/01 11:00:49 by yzeybek          ###   ########.fr       */
+/*   Updated: 2024/09/01 12:41:55 by yzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/errors.h"
+#include "../includes/bsq.h"
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include "../includes/errors.h"
-#include "../includes/bsq.h"
 
 char	*fc_alloc(char *content, int total_size, char *buffer, int bytes_read)
 {

@@ -1,49 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   splited_to_matris.c                                :+:      :+:    :+:   */
+/*   splited_to_matrix.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibayandu <ibayandu@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 19:18:40 by ibayandu          #+#    #+#             */
-/*   Updated: 2024/09/01 11:56:33 by ibayandu         ###   ########.fr       */
+/*   Updated: 2024/09/01 14:03:30 by yzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/bsq.h"
+#include "../includes/commons.h"
 #include <libc.h>
 
-int	ft_strlen(char *str)
-{
-	int	i;
 
-	i = 0;
-	while (str[i++])
-		;
-	return (i);
-}
-
-int	**ft_splitted_to_matris(t_map map)
+int	**ft_splitted_to_matrix(t_map map)
 {
-	int	**matris;
+	int	**matrix;
 	int	i;
 	int	column;
 
 	i = 0;
 	column = ft_strlen(map.map_content[1]);
-	matris = (int **)malloc(map.line_count * sizeof(int *));
+	matrix = (int **)malloc(map.line_count * sizeof(int *));
 	while (i < map.line_count)
-		matris[i++] = (int *)malloc(column * sizeof(int));
+		matrix[i++] = (int *)malloc(column * sizeof(int));
 	while (map.line_count--)
 	{
 		column = ft_strlen(map.map_content[1]);
 		while (column--)
 		{
 			if (map.map_content[map.line_count][column] == map.empty)
-				matris[map.line_count][column] = 1;
+				matrix[map.line_count][column] = 1;
 			else if (map.map_content[map.line_count][column] == map.obstacle)
-				matris[map.line_count][column] = 0;
+				matrix[map.line_count][column] = 0;
 		}
 	}
-	return (matris);
+	return (matrix);
 }

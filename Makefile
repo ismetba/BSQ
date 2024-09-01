@@ -1,5 +1,7 @@
 SRCS = ${wildcard srcs/*.c}
 
+SRCS += ${wildcard srcs/commons/*.c}
+
 OBJS = ${SRCS:.c=.o}
 
 INCS = ./includes
@@ -18,15 +20,14 @@ RM = rm -rf
 
 MAPS = map*
 
-$(shell mkdir -p bin)
-
 %.o : %.c
 	${CC} ${CFLAGS} -c $< -o $@ -I ${INCS}
 
 ${EXE}: ${OBJS}
+	$(shell mkdir -p bin)
 	${CC} ${CFLAGS} -o ${EXE} ${OBJS}
 
-all: $${EXE}
+all: ${EXE}
 
 clean:
 	${RM} ${OBJS}

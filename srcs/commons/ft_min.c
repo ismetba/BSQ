@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solution_matris.c                                  :+:      :+:    :+:   */
+/*   ft_min.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibayandu <ibayandu@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/31 21:44:05 by ibayandu          #+#    #+#             */
-/*   Updated: 2024/09/01 11:58:05 by ibayandu         ###   ########.fr       */
+/*   Created: 2024/09/01 13:31:04 by yzeybek           #+#    #+#             */
+/*   Updated: 2024/09/01 13:56:29 by yzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	**ft_solution_matris(int **original_matris, unsigned long row,
-		unsigned long column)
+int	ft_min(int *arr, int size)
 {
-	int	**solution_matris;
 	int	i;
+	int	min;
 
+	min = 0;
 	i = 0;
-	solution_matris = (int **)malloc(row * sizeof(int *));
-	while (i < row)
+	while (i < size)
 	{
-		solution_matris[i++] = (int *)malloc(column * sizeof(int));
+		if (arr[i] < min)
+			min = arr[i];
+		i++;
 	}
-	i = 0;
-	return (0);
+	return (min);
 }
