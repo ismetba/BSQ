@@ -6,7 +6,7 @@
 /*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 10:06:41 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/09/01 12:41:55 by yzeybek          ###   ########.fr       */
+/*   Updated: 2024/09/02 15:24:16 by yzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	*read_file(const char *filename)
 		check_file(fd);
 	}
 	else
-		fd = STDIN_FILENO;
+		fd = 0;
 	content = read_fc(fd);
 	if (filename)
 		check_file(close(fd));

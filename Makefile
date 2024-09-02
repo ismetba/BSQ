@@ -14,8 +14,6 @@ CFLAGS = -Wall -Wextra -Werror
 
 RM = rm -f
 
-MAPS = map*
-
 %.o : %.c
 	${CC} ${CFLAGS} -c $< -o $@ -I ${INCS}
 
