@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "../includes/bsq.h"
 
 void	print_solution(t_solution solution, t_map map)

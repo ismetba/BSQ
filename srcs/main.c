@@ -11,16 +11,14 @@
 /* ************************************************************************** */
 
 #include "../includes/file_ops.h"
-#include "../includes/matrices.h"
-#include <libc.h>
-#include <unistd.h>
+#include "../includes/matrix_ops.h"
 
-void	free_map(t_map *map)
+void	free_map(t_map *map, int line)
 {
 	int	i;
 
 	i = 0;
-	while (i < (*map).line_count)
+	while (i < line)
 	{
 		free((*map).map_content[i]);
 		i++;
@@ -33,12 +31,14 @@ void	process_map(char *file_name)
 	char				*content;
 	struct s_solution	solution;
 	struct s_map		map;
+	int					line;
 
 	content = read_file(file_name);
-	if (!split_content(content, &map))
+	line = split_content(content, &map);
+	if (line)
 	{
 		write(2, "map error\n", 11);
-		free_map(&map); // TODO: Solve segfault in making free invalid map
+		free_map(&map, line);
 		free(content);
 		return ;
 	}
@@ -46,20 +46,27 @@ void	process_map(char *file_name)
 	solution = ft_solution_matrix(map.map_content, map.line_count,
 			map.column_count);
 	print_solution(solution, map);
-	free_map(&map);
+	free_map(&map, map.line_count);
 }
 
-int	main(int argc, char *argv[])
+int main(int argc, char *argv[]) 
 {
 	int	i;
 
-	i = 1;
-	while (i < argc)
+    if (argc > 1) 
 	{
-		process_map(argv[i]);
-		if (i != argc - 1)
-			write(1, "\n", 1);
-		i++;
-	}
-	return (0);
+		i = 1;
+        while (i < argc)
+		{
+            process_map(argv[i]);
+			if (i != argc - 1)
+				write(1, "\n", 1);
+			i++;
+        }
+    } 
+	else 
+	{
+    	process_map(NULL);
+    }
+    return (0);
 }

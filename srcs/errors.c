@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <libc.h>
+#include "../includes/bsq.h"
 
 void	check_malloc(void *size)
 {

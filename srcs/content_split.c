@@ -11,9 +11,8 @@
 /* ************************************************************************** */
 
 #include "../includes/bsq.h"
-#include "../includes/commons.h"
 #include "../includes/errors.h"
-#include <libc.h>
+#include "../includes/commons.h"
 
 int	ft_atoi_light(char *first_line, struct s_map *map, int length)
 {
@@ -87,11 +86,10 @@ int	split_lines(char *content, t_map *map)
 {
 	int	i;
 	int	j;
-	int	**map_data;
 
 	i = -1;
-	map_data = (int **)malloc(sizeof(int *) * ((*map).line_count));
-	check_malloc(map_data);
+	(*map).map_content = (int **)malloc(sizeof(int *) * ((*map).line_count));
+	check_malloc((*map).map_content);
 	j = ft_strlen_n(content);
 	while (++i < (*map).line_count)
 	{
@@ -102,14 +100,13 @@ int	split_lines(char *content, t_map *map)
 		if (i == 0)
 			(*map).column_count = j;
 		if (j != (*map).column_count)
-			return (0);
-		map_data[i] = get_line(content, map);
-		if (!map_data[i] || (i == (*map).line_count - 1
+			return (i);
+		(*map).map_content[i] = get_line(content, map);
+		if (!((*map).map_content[i]) || (i == (*map).line_count - 1
 				&& content[j + 1] != '\0'))
-			return (0);
+			return (i + 1);
 	}
-	(*map).map_content = map_data;
-	return (1);
+	return (0);
 }
 
 int	split_content(char *content, t_map *map)
@@ -120,11 +117,9 @@ int	split_content(char *content, t_map *map)
 	if (i > 14)
 		return (0);
 	if (!split_first(content, map, i))
-		return (0);
+		return (1);
 	if ((*map).empty == (*map).full || (*map).empty == (*map).obstacle
 		|| (*map).full == (*map).obstacle)
-		return (0);
-	if (!split_lines(content, map))
-		return (0);
-	return (1);
+		return (1);
+	return (split_lines(content, map));
 }

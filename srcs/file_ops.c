@@ -10,11 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/errors.h"
-#include "../includes/bsq.h"
-#include <stdlib.h>
-#include <unistd.h>
 #include <fcntl.h>
+#include "../includes/bsq.h"
+#include "../includes/errors.h"
 
 char	*fc_alloc(char *content, int total_size, char *buffer, int bytes_read)
 {

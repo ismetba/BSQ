@@ -13,9 +13,6 @@
 #ifndef COMMONS_H
 # define COMMONS_H
 
-void	ft_putchar(char c);
-void	ft_putstr(char *str);
-int		ft_strlen(char *str);
 int		ft_min(int a, int b, int c);
 int		ft_strlen_n(char *str);
 

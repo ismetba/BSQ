@@ -10,11 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/commons.h"
 #include "../includes/bsq.h"
 #include "../includes/errors.h"
-#include <libc.h>
-#include <stdio.h>
+#include "../includes/commons.h"
 
 int	ft_fill_matrix(int ***sol_matrix, int **original_matrix, int i, int j)
 {
