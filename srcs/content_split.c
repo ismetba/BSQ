@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   content_split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibayandu <ibayandu@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 12:50:12 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/09/01 15:59:04 by ibayandu         ###   ########.fr       */
+/*   Updated: 2024/09/02 09:41:52 by yzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "../includes/commons.h"
 #include "../includes/errors.h"
 #include <libc.h>
-#include <stdio.h>
 
 int	ft_atoi_light(char *first_line, struct s_map *map, int length)
 {
@@ -46,7 +45,7 @@ int	split_first(char *content, t_map *map, int i)
 		first_line[j] = content[j];
 	first_line[j] = '\0';
 	nbr_length = ft_atoi_light(first_line, map, j);
-	if (!nbr_length)
+	if (!nbr_length || (*map).line_count == 0)
 		return (0);
 	if ((first_line[nbr_length] < 127 && first_line[nbr_length] > 31)
 		&& (first_line[nbr_length + 1] < 127 && first_line[nbr_length + 1] > 31)
@@ -62,33 +61,37 @@ int	split_first(char *content, t_map *map, int i)
 	return (1);
 }
 
-char	*get_line(char *content, t_map *map)
+int	*get_line(char *content, t_map *map)
 {
-	int		i;
-	char	*res;
+	int	i;
+	int	*res;
 
-	res = (char *)malloc(sizeof(char) * (*map).column_count + 1);
+	res = (int *)malloc(sizeof(int) * (*map).column_count);
+	check_malloc(res);
 	i = 0;
 	while ((*content) != '\n')
 	{
-		if ((*content) != (*map).empty && (*content) != (*map).obstacle)
+		if ((*content) == (*map).empty)
+			res[i] = 1;
+		else if ((*content) == (*map).obstacle)
+			res[i] = 0;
+		else
 			return (NULL);
-		res[i] = (*content);
 		i++;
 		content++;
 	}
-	res[i] = '\0';
 	return (res);
 }
 
 int	split_lines(char *content, t_map *map)
 {
-	int		i;
-	int		j;
-	char	**map_data;
+	int	i;
+	int	j;
+	int	**map_data;
 
 	i = -1;
-	map_data = (char **)malloc(sizeof(char *) * ((*map).line_count));
+	map_data = (int **)malloc(sizeof(int *) * ((*map).line_count));
+	check_malloc(map_data);
 	j = ft_strlen_n(content);
 	while (++i < (*map).line_count)
 	{
@@ -123,6 +126,5 @@ int	split_content(char *content, t_map *map)
 		return (0);
 	if (!split_lines(content, map))
 		return (0);
-	printf("hi\n");
 	return (1);
 }

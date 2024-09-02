@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bsq.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibayandu <ibayandu@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 13:27:55 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/09/01 15:16:07 by ibayandu         ###   ########.fr       */
+/*   Updated: 2024/09/02 13:42:52 by yzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,16 @@ typedef struct s_map
 	char	full;
 	int		line_count;
 	int		column_count;
-	char	**map_content;
+	int		**map_content;
 }	t_map;
+
+typedef struct s_solution
+{
+	int	x;
+	int	y;
+	int	size;
+	int	**sol_matrix;
+
+}	t_solution;
 
 #endif

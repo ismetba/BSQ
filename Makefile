@@ -6,38 +6,30 @@ OBJS = ${SRCS:.c=.o}
 
 INCS = ./includes
 
-BIN_DIR = ./bin
-
 NAME = bsq
-
-EXE = ${BIN_DIR}/${NAME}
 
 CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-RM = rm -rf
+RM = rm -f
 
 MAPS = map*
 
 %.o : %.c
 	${CC} ${CFLAGS} -c $< -o $@ -I ${INCS}
 
-${EXE}: ${OBJS}
-	$(shell mkdir -p bin)
-	${CC} ${CFLAGS} -o ${EXE} ${OBJS}
+${NAME}: ${OBJS}
+	${CC} ${CFLAGS} -o ${NAME} ${OBJS}
 
-all: ${EXE}
+all: ${NAME}
 
 clean:
 	${RM} ${OBJS}
 
 fclean: clean
-	${RM} ${BIN_DIR}
-
-bin:
-	mkdir -p bin
+	${RM} ${NAME}
 
 re: fclean all
 
-.PHONY: all clean fclean re bin
+.PHONY: all clean fclean re
