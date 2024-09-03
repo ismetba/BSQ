@@ -6,7 +6,7 @@
 /*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 12:50:12 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/09/03 13:08:40 by yzeybek          ###   ########.fr       */
+/*   Updated: 2024/09/02 16:26:52 by yzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ int	split_first(char *content, t_map *map, int i)
 	int		nbr_length;
 
 	first_line = (char *)malloc(sizeof(char) * i);
-	if (!first_line)
-		return (0);
+	check_malloc(first_line);
 	j = -1;
 	while (++j < i)
 		first_line[j] = content[j];
@@ -67,8 +66,7 @@ int	*get_line(char *content, t_map *map)
 	int	*res;
 
 	res = (int *)malloc(sizeof(int) * (*map).column_count);
-	if (!res)
-		return (NULL);
+	check_malloc(res);
 	i = 0;
 	while ((*content) != '\n')
 	{
@@ -91,8 +89,7 @@ int	split_lines(char *content, t_map *map)
 
 	i = -1;
 	(*map).map_content = (int **)malloc(sizeof(int *) * ((*map).line_count));
-	if (!(*map).map_content)
-		return (0);
+	check_malloc((*map).map_content);
 	j = ft_strlen_n(content);
 	while (++i < (*map).line_count)
 	{

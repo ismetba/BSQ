@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_min.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: ibayandu <ibayandu@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 13:31:04 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/09/03 11:46:00 by yzeybek          ###   ########.fr       */
+/*   Updated: 2024/09/01 17:09:30 by ibayandu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_min(int a, int b, int c)
 {
-	if (a < b && a < c)
+	if (a <= b && a <= c)
 		return (a);
-	else if (b < a && b < c)
+	else if (b <= a && b <= c)
 		return (b);
-	else
+	else if (c <= a && c <= b)
 		return (c);
+	else
+		return (-1);
 }

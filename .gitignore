@@ -3,3 +3,4 @@
 srcs/*.o
 srcs/commons/*.o
 bsq
+data
