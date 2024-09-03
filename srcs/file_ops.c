@@ -6,7 +6,7 @@
 /*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 10:06:41 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/09/03 17:31:18 by yzeybek          ###   ########.fr       */
+/*   Updated: 2024/09/03 20:17:48 by yzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ char	*fc_alloc(char *content, int total_size, char *buffer, int bytes_read)
 	char	*new_content;
 
 	new_content = malloc(total_size + bytes_read + 1);
-	check_malloc(new_content);
+	if (!new_content)
+		return (NULL);
 	i = -1;
 	while (++i < total_size)
 		new_content[i] = content[i];
@@ -45,10 +46,13 @@ char	*read_fc(int fd)
 	while (bytes_read > 0)
 	{
 		content = fc_alloc(content, total_size, buffer, bytes_read);
+		if (!content)
+			return (NULL);
 		total_size += bytes_read;
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 	}
-	check_bytes(bytes_read, &content);
+	if (bytes_read == -1)
+		return (NULL);
 	return (content);
 }
 
@@ -60,12 +64,13 @@ char	*read_file(const char *filename)
 	if (filename)
 	{
 		fd = open(filename, O_RDONLY);
-		check_file(fd);
+		if (fd == -1)
+			return (NULL);
 	}
 	else
 		fd = 0;
 	content = read_fc(fd);
-	if (filename)
-		check_file(close(fd));
+	if (!content || (filename && close(fd) == -1))
+		return (NULL);
 	return (content);
 }

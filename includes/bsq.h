@@ -6,7 +6,7 @@
 /*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 13:27:55 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/09/02 13:42:52 by yzeybek          ###   ########.fr       */
+/*   Updated: 2024/09/03 20:36:38 by yzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define BUFFER_SIZE 1024
+# define BUFFER_SIZE 100000
 
 typedef struct s_map
 {
