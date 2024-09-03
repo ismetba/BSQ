@@ -2,3 +2,4 @@
 .vscode
 srcs/*.o
 srcs/commons/*.o
+bsq
