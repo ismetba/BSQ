@@ -6,24 +6,24 @@
 /*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 10:23:34 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/09/02 17:30:55 by yzeybek          ###   ########.fr       */
+/*   Updated: 2024/09/03 11:45:01 by yzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/file_ops.h"
 #include "../includes/matrix_ops.h"
 
-void	free_map(t_map *map, int line)
+void	free_matrix(int **matrix, int line)
 {
 	int	i;
 
 	i = 0;
 	while (i < line)
 	{
-		free((*map).map_content[i]);
+		free(matrix[i]);
 		i++;
 	}
-	free((*map).map_content);
+	free(matrix);
 }
 
 void	process_map(char *file_name)
@@ -37,7 +37,7 @@ void	process_map(char *file_name)
 	line = split_content(content, &map);
 	if (line)
 	{
-		write(2, "map error\n", 11);
+		write(2, "map error", 9);
 		free_map(&map, line);
 		free(content);
 		return ;
@@ -46,27 +46,28 @@ void	process_map(char *file_name)
 	solution = ft_solution_matrix(map.map_content, map.line_count,
 			map.column_count);
 	print_solution(solution, map);
-	free_map(&map, map.line_count);
+	free_matrix(map.map_content, map.line_count);
+	free_matrix(solution.sol_matrix, map.line_count);
 }
 
-int main(int argc, char *argv[]) 
+int	main(int argc, char *argv[])
 {
 	int	i;
 
-    if (argc > 1) 
+	if (argc > 1)
 	{
 		i = 1;
-        while (i < argc)
+		while (i < argc)
 		{
-            process_map(argv[i]);
+			process_map(argv[i]);
 			if (i != argc - 1)
 				write(1, "\n", 1);
 			i++;
-        }
-    } 
-	else 
+		}
+	}
+	else
 	{
-    	process_map(NULL);
-    }
-    return (0);
+		process_map(NULL);
+	}
+	return (0);
 }
