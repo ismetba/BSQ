@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: ibayandu <ibayandu@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 10:23:34 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/09/03 19:59:37 by yzeybek          ###   ########.fr       */
+/*   Updated: 2024/09/03 21:37:24 by ibayandu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,11 @@ int	main(int argc, char *argv[])
 	{
 		i = 0;
 		while (++i < argc)
+		{
 			process_map(argv[i]);
+			if (i != argc -1)
+				write(1, "\n", 1);
+		}
 	}
 	else
 		process_map(NULL);
