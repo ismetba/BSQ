@@ -2,5 +2,6 @@
 .vscode
 srcs/*.o
 srcs/commons/*.o
-bsq
+./bsq
 data
+tests

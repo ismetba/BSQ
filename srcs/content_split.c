@@ -6,7 +6,7 @@
 /*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 12:50:12 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/09/02 16:26:52 by yzeybek          ###   ########.fr       */
+/*   Updated: 2024/09/03 19:55:51 by yzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ int	split_first(char *content, t_map *map, int i)
 	first_line[j] = '\0';
 	nbr_length = ft_atoi_light(first_line, map, j);
 	if (!nbr_length || (*map).line_count == 0)
+	{
+		free(first_line);
 		return (0);
+	}
 	if ((first_line[nbr_length] < 127 && first_line[nbr_length] > 31)
 		&& (first_line[nbr_length + 1] < 127 && first_line[nbr_length + 1] > 31)
 		&& (first_line[nbr_length + 2] < 127 && first_line[nbr_length + 2] > 31)
@@ -97,6 +100,8 @@ int	split_lines(char *content, t_map *map)
 		j = 0;
 		while (content[j] != '\n' && content[j])
 			j++;
+		if (j == 0)
+			return (-1);
 		if (i == 0)
 			(*map).column_count = j;
 		if (j != (*map).column_count)
@@ -113,13 +118,15 @@ int	split_content(char *content, t_map *map)
 {
 	int	i;
 
-	i = ft_strlen_n(content);
+	i = 0;
+	while (content[i] != '\n')
+		i++;
 	if (i > 14)
-		return (0);
+		return (-1);
 	if (!split_first(content, map, i))
-		return (1);
+		return (-1);
 	if ((*map).empty == (*map).full || (*map).empty == (*map).obstacle
 		|| (*map).full == (*map).obstacle)
-		return (1);
+		return (-1);
 	return (split_lines(content, map));
 }
