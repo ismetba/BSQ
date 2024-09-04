@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   content_split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: ibayandu <ibayandu@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 12:50:12 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/09/04 11:12:29 by yzeybek          ###   ########.fr       */
+/*   Updated: 2024/09/04 13:33:24 by ibayandu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,11 @@ int	split_content(char *content, t_map *map)
 {
 	int	i;
 
+	i = 0;
+	while (content[i])
+		i++;
+	if (content[i - 1] != '\n')
+		return (-1);
 	i = 0;
 	while (content[i] != '\n')
 		i++;
