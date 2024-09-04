@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_set_chars.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/29 13:05:14 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/09/03 20:18:53 by yzeybek          ###   ########.fr       */
+/*   Created: 2024/09/04 09:30:52 by yzeybek           #+#    #+#             */
+/*   Updated: 2024/09/04 09:32:51 by yzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/bsq.h"
 
-void	check_malloc(void *size)
+void	ft_set_chars(char empty, char obstacle, char full, t_map *map)
 {
-	if (size == NULL)
-	{
-		write(2, "Error allocating memory !\n", 27);
-		exit(EXIT_FAILURE);
-	}
-}
-
-void	check_bytes(int bytes_read, char **content)
-{
-	if (bytes_read == -1)
-	{
-		write(2, "Error reading bytes !\n", 23);
-		free(*content);
-		exit(EXIT_FAILURE);
-	}
+	(*map).empty = empty;
+	(*map).obstacle = obstacle;
+	(*map).full = full;
 }

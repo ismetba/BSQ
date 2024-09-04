@@ -3,4 +3,4 @@
 srcs/*.o
 srcs/commons/*.o
 data
-tests
+test

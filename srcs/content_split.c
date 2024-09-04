@@ -6,12 +6,10 @@
 /*   By: yzeybek <yzeybek@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 12:50:12 by yzeybek           #+#    #+#             */
-/*   Updated: 2024/09/03 19:55:51 by yzeybek          ###   ########.fr       */
+/*   Updated: 2024/09/04 11:12:29 by yzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/bsq.h"
-#include "../includes/errors.h"
 #include "../includes/commons.h"
 
 int	ft_atoi_light(char *first_line, struct s_map *map, int length)
@@ -37,52 +35,51 @@ int	split_first(char *content, t_map *map, int i)
 	int		j;
 	int		nbr_length;
 
-	first_line = (char *)malloc(sizeof(char) * i);
-	check_malloc(first_line);
+	first_line = (char *)malloc(sizeof(char) * (i + 1));
+	if (!first_line)
+		return (0);
 	j = -1;
 	while (++j < i)
 		first_line[j] = content[j];
 	first_line[j] = '\0';
 	nbr_length = ft_atoi_light(first_line, map, j);
-	if (!nbr_length || (*map).line_count == 0)
+	if ((!nbr_length || (*map).line_count == 0) || j != nbr_length + 3
+		|| !ft_is_printable(first_line[nbr_length],
+			first_line[nbr_length + 1], first_line[nbr_length + 2]))
 	{
 		free(first_line);
 		return (0);
 	}
-	if ((first_line[nbr_length] < 127 && first_line[nbr_length] > 31)
-		&& (first_line[nbr_length + 1] < 127 && first_line[nbr_length + 1] > 31)
-		&& (first_line[nbr_length + 2] < 127 && first_line[nbr_length + 2] > 31)
-		&& j == nbr_length + 3)
-	{
-		(*map).empty = first_line[nbr_length];
-		(*map).obstacle = first_line[nbr_length + 1];
-		(*map).full = first_line[nbr_length + 2];
-	}
 	else
-		return (0);
+		ft_set_chars(first_line[nbr_length], first_line[nbr_length + 1],
+			first_line[nbr_length + 2], map);
+	free(first_line);
 	return (1);
 }
 
-int	*get_line(char *content, t_map *map)
+int	get_line(char *content, t_map *map, int **dest)
 {
 	int	i;
-	int	*res;
 
-	res = (int *)malloc(sizeof(int) * (*map).column_count);
-	check_malloc(res);
+	(*dest) = (int *)malloc(sizeof(int) * (*map).column_count);
+	if (!(*dest))
+	{
+		(*dest) = NULL;
+		return (-1);
+	}
 	i = 0;
 	while ((*content) != '\n')
 	{
 		if ((*content) == (*map).empty)
-			res[i] = 1;
+			(*dest)[i] = 1;
 		else if ((*content) == (*map).obstacle)
-			res[i] = 0;
+			(*dest)[i] = 0;
 		else
-			return (NULL);
+			return (0);
 		i++;
 		content++;
 	}
-	return (res);
+	return (1);
 }
 
 int	split_lines(char *content, t_map *map)
@@ -92,24 +89,24 @@ int	split_lines(char *content, t_map *map)
 
 	i = -1;
 	(*map).map_content = (int **)malloc(sizeof(int *) * ((*map).line_count));
-	check_malloc((*map).map_content);
+	if (!((*map).map_content))
+		return (-1);
 	j = ft_strlen_n(content);
 	while (++i < (*map).line_count)
 	{
 		content += j + 1;
-		j = 0;
-		while (content[j] != '\n' && content[j])
-			j++;
+		j = ft_strlen_n(content);
 		if (j == 0)
 			return (-1);
 		if (i == 0)
 			(*map).column_count = j;
-		if (j != (*map).column_count)
+		if (j != (*map).column_count
+			|| (i == (*map).line_count - 1 && content[j + 1] != '\0'))
 			return (i);
-		(*map).map_content[i] = get_line(content, map);
-		if (!((*map).map_content[i]) || (i == (*map).line_count - 1
-				&& content[j + 1] != '\0'))
+		if (!get_line(content, map, &((*map).map_content[i])))
 			return (i + 1);
+		else if (!((*map).map_content[i]))
+			return (i);
 	}
 	return (0);
 }
